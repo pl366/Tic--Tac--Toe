@@ -68,40 +68,54 @@ def getComputerMove(computerLetter):
             board[move]=computerLetter
             return 
     
-drawBoard()    
-playerLetter, computerLetter = inputPlayerLetter()
-turn = whoGoesFirst()
-print('The ' + turn + ' will go first.')
-count=0
+
+
 while True:
-    #xprint ()
-    #print (count)
-    if turn=='player':
-       count+=1
-       getPlayerMove(playerLetter)
-       drawBoard()
-       if count>=5:
-           if checkWinner(board,playerLetter):
-               print ("Hurray!!!!You Win")
-               break
-       if count==9:
-           print ("The match is drawn")
-           break
+    for i in range(9):
+        board[i]=-1
+    drawBoard()    
+    playerLetter, computerLetter = inputPlayerLetter()
+    turn = whoGoesFirst()
+    print('The ' + turn + ' will go first.')
+    count=0
+    
 
-       turn = 'computer'
-    else:
-        print ('Computers Turn')
-        count+=1
+    while True:
         
-        getComputerMove(computerLetter)
-        drawBoard()
-        if count>=5:
-           if checkWinner(board,computerLetter):
-               print ("You Lose")
-               break
-        if count==9:
-           print ("The match is drawn")
-           break
+        
 
-        turn = 'player'
+        if turn=='player':
+            count+=1
+            getPlayerMove(playerLetter)
+            drawBoard()
+            if count>=5:
+                if checkWinner(board,playerLetter):
+                    print ("Hurray!!!!You Win")
+                    break
+            if count==9:
+                print ("The match is drawn")
+                break
+
+            turn = 'computer'
+        else:
+            print ('Computers Turn')
+            count+=1
+        
+            getComputerMove(computerLetter)
+            drawBoard()
+            if count>=5:
+                if checkWinner(board,computerLetter):
+                    print ("You Lose")
+                    break
+            if count==9:
+                print ("The match is drawn")
+                break
+
+            turn = 'player'
+            
+    
+    playAgain=input('Do you want to play again? (yes or no)')
+    
+    if playAgain!='yes':
+        break
     
